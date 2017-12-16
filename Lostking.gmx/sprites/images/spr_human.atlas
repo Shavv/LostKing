@@ -1,0 +1,209 @@
+
+spr_human.png
+size: 256,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Armor/HumanMale_BackFoot_armor1
+  rotate: true
+  xy: 22, 2
+  size: 3, 2
+  orig: 3, 2
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_Body_armor1
+  rotate: false
+  xy: 202, 50
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_Foot_armor1
+  rotate: false
+  xy: 26, 6
+  size: 3, 2
+  orig: 3, 2
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_LowerArm_armor1
+  rotate: false
+  xy: 202, 37
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_LowerBackArm_armor1
+  rotate: false
+  xy: 233, 60
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_LowerBackLeg_armor1
+  rotate: false
+  xy: 210, 44
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_LowerLeg_armor1
+  rotate: false
+  xy: 216, 51
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_UpperArm_armor1
+  rotate: false
+  xy: 221, 60
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_UpperBackArm_armor1
+  rotate: false
+  xy: 20, 10
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_UpperBackLeg_armor1
+  rotate: false
+  xy: 216, 57
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
+Armor/HumanMale_UpperLeg_armor1
+  rotate: false
+  xy: 10, 7
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
+HumanMale_BackFoot
+  rotate: false
+  xy: 26, 2
+  size: 3, 2
+  orig: 3, 2
+  offset: 0, 0
+  index: -1
+HumanMale_BackLowerArm
+  rotate: false
+  xy: 202, 33
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+HumanMale_BackUpperArm
+  rotate: false
+  xy: 202, 33
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+HumanMale_BackLowerLeg
+  rotate: true
+  xy: 227, 60
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+HumanMale_BackUpperLeg
+  rotate: true
+  xy: 10, 2
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
+HumanMale_Body
+  rotate: false
+  xy: 2, 4
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+HumanMale_Eyes
+  rotate: false
+  xy: 20, 7
+  size: 4, 1
+  orig: 4, 1
+  offset: 0, 0
+  index: -1
+HumanMale_Foot
+  rotate: false
+  xy: 32, 10
+  size: 3, 2
+  orig: 3, 2
+  offset: 0, 0
+  index: -1
+HumanMale_Head
+  rotate: false
+  xy: 202, 41
+  size: 6, 7
+  orig: 6, 7
+  offset: 0, 0
+  index: -1
+HumanMale_LowerArm
+  rotate: false
+  xy: 26, 10
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+HumanMale_UpperArm
+  rotate: false
+  xy: 26, 10
+  size: 4, 2
+  orig: 4, 2
+  offset: 0, 0
+  index: -1
+HumanMale_LowerLeg
+  rotate: false
+  xy: 202, 27
+  size: 2, 4
+  orig: 2, 4
+  offset: 0, 0
+  index: -1
+HumanMale_Neck
+  rotate: false
+  xy: 17, 2
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+HumanMale_UpperLeg
+  rotate: false
+  xy: 15, 7
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
+Weapons/1h_Sword1
+  rotate: false
+  xy: 2, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+Weapons/1h_Sword2
+  rotate: false
+  xy: 52, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+Weapons/1h_Sword3
+  rotate: false
+  xy: 102, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+Weapons/1h_Sword4
+  rotate: false
+  xy: 152, 14
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
