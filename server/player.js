@@ -29,7 +29,13 @@ lostking.inventory = function(player_object){
 		for(i=0; i<this.slot_amount; i++){
 			this.slot_list.push(new lostking.item_slot());
 		}
-	this.equip = function(i){
+	this.add = function(item){
+		
+	}
+	this.equip = function(slot_index){
+		
+	}
+	this.check = function(item, amount){
 		
 	}
 }

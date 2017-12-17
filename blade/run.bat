@@ -1,0 +1,2 @@
+node blade.js
+pause

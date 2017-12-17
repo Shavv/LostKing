@@ -30,6 +30,7 @@ index = 0;//Indexes must be unique for every item
 name = "empty";//Name
 stack_size = 1;//Biggest stack possible
 action_index = t_default;//Type of action this item performs when pressed with right mouse button
+rarity = 0;
 
 ds_list_add(item_controller.item_list, id);
 /*
