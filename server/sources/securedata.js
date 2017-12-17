@@ -49,11 +49,11 @@ hsd = function(){
 						var data1 = data[position+1];
 						var value = data0 * 256 + data1;
 						this.buffer_cmp251 = value;
-						console.log(this.buffer_cmp251_package_id+"_"+this.buffer_cmp251);
+						//console.log(this.buffer_cmp251_package_id+"_"+this.buffer_cmp251);
 						position += 2;
 					}else if(this.buffer_cmp251>0){
 						package_id = this.buffer_cmp251_package_id;
-						console.log("Start package: "+package_id);
+						//console.log("Start package: "+package_id);
 						package_start = position;
 						package_output = new Array;
 						this.buffer_cmp251-=1;
@@ -62,7 +62,7 @@ hsd = function(){
 						break;
 					}else{
 						package_id = type;
-						console.log("Start package: "+package_id);
+						//console.log("Start package: "+package_id);
 						package_start = position;
 						package_position = 0
 						package_output = new Array;
@@ -73,7 +73,7 @@ hsd = function(){
 						var size = hnet_profile_list[package_id].list[package_output.length];
 							if(size==-1){//String
 								var string_length = data[position];
-								console.log("String with size: "+string_length);
+								//console.log("String with size: "+string_length);
 								position++;
 								
 								var output = "";
@@ -81,13 +81,13 @@ hsd = function(){
 									for(i=position; i<position+string_length; i++){
 										output += String.fromCharCode(data[i]);
 									}
-								console.log(output);
+								//console.log(output);
 								package_output.push(output);
 								position += string_length;
 							}else if(size==1){//Int8
 								var data0 = data[position];
 								var value = data0-Math.pow(2, 8)/2;
-								console.log(value);
+								//console.log(value);
 								package_output.push(value);
 								position += size;
 							}else if(size==2){//Int16
@@ -97,11 +97,11 @@ hsd = function(){
 								start += data0 * 256;
 								start += data1;
 								var value = start-Math.pow(2, 16)/2;
-								console.log(value);
+								//console.log(value);
 								package_output.push(value);
 								position += size;
 							}else{
-								console.log(data[position]);
+								//console.log(data[position]);
 								package_output.push(8);
 								position += size;
 							}

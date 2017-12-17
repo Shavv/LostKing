@@ -119,7 +119,7 @@ hnet.message = function(t_id){
 			}
 	}
 	this.send = function(object){
-		console.log(this.list);
+		//console.log(this.list);
 		object.socket.write(new Buffer(this.list));
 	}
 	this.send_other = function(object){
@@ -529,7 +529,7 @@ hnet.create_server = function(port, socket_object){
 		}
 
 		socket.on('data', function(data){
-			console.log(data);
+			//console.log(data);
 			/*hnet.parse_receive_data(socket.object.hsd, data, function(buffer_object){*/
 			socket.object.hsd.check_stream(data, function(package_id, parameter_list){
 				if(typeof socket.object.receive == "function"){
