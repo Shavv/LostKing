@@ -9,22 +9,23 @@ eval(fs.readFileSync('player.js')+'');
 
 loginserver_socket_object = function(){
 	this.onconnect = function(object){
-		console.log("Player tries to connect to the server");
+		console.log("New connection");
 	}
 	this.ondisconnect = function(object){
+		console.log("Lost connection");
 		//Player logs out
 		var message = new hnet.message(8);
 		message.write_byte16(object.player_object.id);
 		message.write_byte(0);
 		message.send_other(object);
 		
-		asantia.player_list.splice(asantia.player_list.indexOf(object.player_object), 1);
+		lostking.player_list.splice(lostking.player_list.indexOf(object.player_object), 1);
 	}
 	this.receive = function(object, package_id, buffer){
 		switch(package_id){
 			case 6://Creates player object with name
 				var name = buffer.read();
-				var player = new asantia.player(object, name);
+				var player = new lostking.player(object, name);
 				object.player_object = player;
 
 				//Sends new player other to existing players
@@ -37,8 +38,8 @@ loginserver_socket_object = function(){
 				
 				//Sends new player the other object of existing players
 				var i;
-					for(i=0; i<asantia.player_list.length; i++){
-						var other_player = asantia.player_list[i];
+					for(i=0; i<lostking.player_list.length; i++){
+						var other_player = lostking.player_list[i];
 							if(other_player.id != player.id){//Don't send the new player this own other object
 								var message = new hnet.message(7);
 								message.write_byte16(other_player.id);
