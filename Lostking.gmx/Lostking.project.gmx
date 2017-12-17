@@ -3,13 +3,12 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions>
-    <extension index="0">extensions\GameMaker Server+(Windows)</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="controller sprites">
       <sprite>sprites\spr_room</sprite>
+      <sprite>sprites\spr_game</sprite>
       <sprite>sprites\spr_none</sprite>
       <sprite>sprites\spr_GMS</sprite>
       <sprite>sprites\spr_cam</sprite>
@@ -58,29 +57,15 @@
       <sprite>sprites\human_concept</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background">
-    <background>background\background0</background>
-  </backgrounds>
+  <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_shake_view.gml</script>
     <script>scripts\login_scr.gml</script>
-    <scripts name="inventory &amp; items">
-      <script>scripts\reset_slot.gml</script>
-      <script>scripts\item_list.gml</script>
-      <script>scripts\item_bonus.gml</script>
-      <script>scripts\inventory_init.gml</script>
-      <script>scripts\inventory_draw_items.gml</script>
-      <script>scripts\inventory_drag_items.gml</script>
-      <script>scripts\add_item.gml</script>
-      <scripts name="rightclick code">
-        <script>scripts\rl_nothing.gml</script>
-      </scripts>
-      <script>scripts\check_if_mouse_in_ui.gml</script>
-    </scripts>
     <scripts name="rightclick">
       <script>scripts\outline.gml</script>
       <script>scripts\set_target.gml</script>
+      <script>scripts\rl_nothing.gml</script>
     </scripts>
     <scripts name="UI">
       <script>scripts\drag_window.gml</script>
@@ -91,7 +76,6 @@
       <script>scripts\light_object.gml</script>
     </scripts>
     <script>scripts\passthrough.gml</script>
-    <script>scripts\script19.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_gms1</font>
@@ -101,16 +85,10 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
-    <object>objects\obj_player_other</object>
     <object>objects\obj_cam</object>
     <object>objects\DISPLAY</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_test_tree</object>
-    <objects name="Online">
-      <object>objects\GMS</object>
-      <object>objects\obj_login</object>
-      <object>objects\obj_room_manager</object>
-    </objects>
     <object>objects\obj_mouse</object>
     <object>objects\obj_target</object>
     <objects name="GAME objects">
@@ -121,7 +99,6 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\login_room</room>
     <room>rooms\display_set</room>
     <room>rooms\test_room</room>
   </rooms>

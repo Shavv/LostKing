@@ -7,10 +7,3 @@ if instance_exists(obj_player)
  }
 }
 
-if instance_exists(obj_player_other)
-{
- with (obj_player_other)
- {
-  light(x,y-32,120,c_white)
- }
-}
