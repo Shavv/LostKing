@@ -117,12 +117,44 @@
     </objects>
     <object>objects\obj_network_controller</object>
     <object>objects\obj_other_player</object>
+    <objects name="items">
+      <objects name="other">
+        <object>objects\item_0_empty</object>
+      </objects>
+      <object>objects\obj_item_controller</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\display_set</room>
     <room>rooms\test_room</room>
   </rooms>
-  <constants number="4">
+  <constants number="30">
+    <constant name="t_default">0</constant>
+    <constant name="t_equipable">1</constant>
+    <constant name="t_consumable">2</constant>
+    <constant name="t_relic">3</constant>
+    <constant name="t_lynx">4</constant>
+    <constant name="q_helmet">0</constant>
+    <constant name="q_chest">1</constant>
+    <constant name="q_shoulders">2</constant>
+    <constant name="q_back">3</constant>
+    <constant name="q_hands">4</constant>
+    <constant name="q_vambraces">5</constant>
+    <constant name="q_belt">6</constant>
+    <constant name="q_pants">7</constant>
+    <constant name="q_boots">8</constant>
+    <constant name="q_mainhand">9</constant>
+    <constant name="q_offhand">10</constant>
+    <constant name="q_utility">11</constant>
+    <constant name="q_tradepack">12</constant>
+    <constant name="q_lantern">13</constant>
+    <constant name="q_relic">14</constant>
+    <constant name="q_necklace">15</constant>
+    <constant name="q_earring">16</constant>
+    <constant name="q_ring">18</constant>
+    <constant name="q_lynx_default">20</constant>
+    <constant name="q_lynx_passive">23</constant>
+    <constant name="q_lynx_ultimate">24</constant>
     <constant name="h_byte">1</constant>
     <constant name="h_byte16">2</constant>
     <constant name="h_string">-1</constant>

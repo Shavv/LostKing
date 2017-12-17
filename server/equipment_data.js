@@ -27,9 +27,6 @@ equipment.slot[equipment.item.belt] = [6];
 equipment.item.pants = 7;
 equipment.slot[equipment.item.pants] = [7];
 
-equipment.item.pants = 7;
-equipment.slot[equipment.item.pants] = [7];
-
 equipment.item.boots = 8;
 equipment.slot[equipment.item.boots] = [8];
 
@@ -54,8 +51,8 @@ equipment.slot[equipment.item.relic] = [14];
 equipment.item.necklace = 15;
 equipment.slot[equipment.item.necklace] = [15];
 
-equipment.item.earing = 16;
-equipment.slot[equipment.item.earing] = [16, 17];
+equipment.item.earring = 16;
+equipment.slot[equipment.item.earring] = [16, 17];
 
 equipment.item.ring = 18;
 equipment.slot[equipment.item.ring] = [18, 19];
