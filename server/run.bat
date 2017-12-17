@@ -1,0 +1,2 @@
+node lostking.js
+pause
