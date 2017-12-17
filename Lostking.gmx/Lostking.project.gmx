@@ -76,6 +76,24 @@
       <script>scripts\light_object.gml</script>
     </scripts>
     <script>scripts\passthrough.gml</script>
+    <scripts name="Hnet Multiplayer">
+      <script>scripts\hnet_connect.gml</script>
+      <script>scripts\hnet_message_start.gml</script>
+      <script>scripts\hnet_message_start_cmp251.gml</script>
+      <script>scripts\hnet_message_send.gml</script>
+      <script>scripts\hnet_write_byte.gml</script>
+      <script>scripts\hnet_write_byte16.gml</script>
+      <script>scripts\hnet_write_byte32.gml</script>
+      <script>scripts\hnet_write_float.gml</script>
+      <script>scripts\hnet_write_string.gml</script>
+      <script>scripts\hnet_profile_create.gml</script>
+      <script>scripts\hnet_profile_add.gml</script>
+      <script>scripts\hnet_receive_message.gml</script>
+    </scripts>
+    <scripts name="LostKing Multiplayer">
+      <script>scripts\amp_receive.gml</script>
+      <script>scripts\amp_read.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_gms1</font>
@@ -97,11 +115,19 @@
       <object>objects\SHADOW</object>
       <object>objects\obj_mouse_click</object>
     </objects>
+    <object>objects\obj_network_controller</object>
+    <object>objects\obj_other_player</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\display_set</room>
     <room>rooms\test_room</room>
   </rooms>
+  <constants number="4">
+    <constant name="h_byte">1</constant>
+    <constant name="h_byte16">2</constant>
+    <constant name="h_string">-1</constant>
+    <constant name="h_default">0</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
