@@ -1,5 +1,4 @@
 eval(fs.readFileSync('equipment_data.js')+'');
-eval(fs.readFileSync('item_data.js')+'');
 
 lostking = new Object;
 lostking.player_list = new Array;
@@ -76,7 +75,7 @@ lostking.inventory = function(player_object){
 		return true;
 	}
 	this.remove = function(item, amount){
-		var i, j;//Remove
+		var i;//Remove
 			for(i=this.slot_list.length-1; i>=0; i--){
 				var result_slot = this.slot_list[i];
 					if(result_slot.item_list.length>0 && amount>0){
@@ -88,6 +87,30 @@ lostking.inventory = function(player_object){
 						}
 					}
 			}
+	}
+	this.count = function(item){
+		var count = 0;
+		var i;//Count amount of items with index of item
+			for(i=0; i<this.slot_list.length; i++){
+				var result_slot = this.slot_list[i];
+					if(result_slot.item_list.length>0){
+						if(result_slot.item_list[0].blueprint.index==item.blueprint.index){
+							count += result_slot.item_list.length;
+						}
+					}
+			}
+		return count;
+	}
+	this.count_empty = function(){
+		var count = 0;
+		var i;//Counts amount of empty slots
+			for(i=0; i<this.slot_list.length; i++){
+				var result_slot = this.slot_list[i];
+					if(result_slot.item_list.length==0){
+						count++;
+					}
+			}
+		return count;
 	}
 	this.equip = function(slot_index){
 		
@@ -116,3 +139,23 @@ lostking.item_default_blueprint = function(index, name, max_stack_size, rarity){
 lostking.item_default = function(blueprint){
 	this.blueprint = blueprint;
 }
+
+eval(fs.readFileSync('item_data.js')+'');
+
+henk = new lostking.player(-1, "Henk");
+henk.inventory.add(new lostking.item_default(item.blueprint.empty));
+henk.inventory.add(new lostking.item_default(item.blueprint.test));
+henk.inventory.add(new lostking.item_default(item.blueprint.test));
+henk.inventory.add(new lostking.item_default(item.blueprint.test));
+
+console.log(henk.inventory.slot_list);
+console.log(henk.inventory.count(new lostking.item_default(item.blueprint.test)));
+console.log(henk.inventory.count_empty());
+
+henk.inventory.remove(new lostking.item_default(item.blueprint.test), 1);
+console.log(henk.inventory.slot_list);
+console.log(henk.inventory.count_empty());
+console.log(henk.inventory.count(new lostking.item_default(item.blueprint.test)));
+console.log(henk.inventory.check(new lostking.item_default(item.blueprint.empty), 2));
+console.log(henk.inventory.check(new lostking.item_default(item.blueprint.test), 2));
+
