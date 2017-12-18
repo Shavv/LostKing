@@ -130,6 +130,16 @@ lostking.inventory = function(player_object){
 			}
 		return false;
 	}
+	this.drag_single = function(origin_slot, destination_slot){
+			if((destination_slot.item_list.length==0 || origin_slot.item_list[0].blueprint.index==destination_slot.item_list[0].blueprint.index) && origin_slot.item_list.length>0){//New slot is empty
+				if(destination_slot.item_list.length<origin_slot.item_list[0].blueprint.max_stack_size){
+					destination_slot.item_list.push(origin_slot.item_list[0]);//Add item to destination slot
+					origin_slot.item_list.splice(0, 1);
+					return true;
+				}
+			}
+		return false;
+	}
 	this.equip = function(slot_index){
 		
 	}
@@ -168,5 +178,5 @@ henk.inventory.add(new lostking.item_default(item.blueprint.test));
 
 console.log(henk.inventory.slot_list);
 
-console.log(henk.inventory.drag(henk.inventory.slot_list[8], henk.inventory.slot_list[2]));
+console.log(henk.inventory.drag_single(henk.inventory.slot_list[2], henk.inventory.slot_list[0]));
 console.log(henk.inventory.slot_list);
