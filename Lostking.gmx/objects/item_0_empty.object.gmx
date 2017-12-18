@@ -28,7 +28,7 @@
             <string>//Item header, required variables:
 index = 0;//Indexes must be unique for every item
 name = "empty";//Name
-stack_size = 1;//Biggest stack possible
+max_stack_size = 1;//Biggest stack possible
 action_index = t_default;//Type of action this item performs when pressed with right mouse button
 rarity = 0;
 
