@@ -112,6 +112,24 @@ lostking.inventory = function(player_object){
 			}
 		return count;
 	}
+	this.drag = function(origin_slot, destination_slot){
+			if(origin_slot.item_list.length>0 && destination_slot.item_list.length>0){//If items are of the same type, the destination stack will be filled to it's maximum
+				if(origin_slot.item_list[0].blueprint.index==destination_slot.item_list[0].blueprint.index){
+					var max_copy_amount = origin_slot.item_list[0].blueprint.max_stack_size-destination_slot.item_list.length;
+					var copy_amount = Math.min(max_copy_amount, origin_slot.item_list.length);
+
+					destination_slot.item_list = destination_slot.item_list.concat(origin_slot.item_list.slice(0, copy_amount));
+					origin_slot.item_list.splice(0, copy_amount);
+					return true;
+				}
+			}else if(origin_slot.item_list.length>0){//Poor old swap
+				var tmp_list = destination_slot.item_list;//Old item in end_slot list
+				destination_slot.item_list = origin_slot.item_list;
+				origin_slot.item_list = tmp_list;
+				return true;
+			}
+		return false;
+	}
 	this.equip = function(slot_index){
 		
 	}
@@ -149,13 +167,6 @@ henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 
 console.log(henk.inventory.slot_list);
-console.log(henk.inventory.count(new lostking.item_default(item.blueprint.test)));
-console.log(henk.inventory.count_empty());
 
-henk.inventory.remove(new lostking.item_default(item.blueprint.test), 1);
+console.log(henk.inventory.drag(henk.inventory.slot_list[8], henk.inventory.slot_list[2]));
 console.log(henk.inventory.slot_list);
-console.log(henk.inventory.count_empty());
-console.log(henk.inventory.count(new lostking.item_default(item.blueprint.test)));
-console.log(henk.inventory.check(new lostking.item_default(item.blueprint.empty), 2));
-console.log(henk.inventory.check(new lostking.item_default(item.blueprint.test), 2));
-
