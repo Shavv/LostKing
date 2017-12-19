@@ -102,8 +102,8 @@ hnet.message = function(t_id){
 			if(input>=-Math.pow(2, 8)/2 && input<Math.pow(2, 8)/2 && !decimal){
 				this.list.push(input+Math.pow(2, 8)/2);
 			}else{
-				this.list.push(255);
-				console.log("Error Int8 out of bounds!!!");
+				this.list.push(0);
+				console.log("Error Int8 out of bounds!!!"+input+"/"+(Math.pow(2, 8)/2));
 			}
 	}
 	this.write_byte16 = function(input){
@@ -115,7 +115,8 @@ hnet.message = function(t_id){
 				this.list.push(value % 256);
 			}else{
 				this.list.push(0);
-				console.log("Error Int16 out of bounds!!!");
+				this.list.push(0);
+				console.log("Error Int16 out of bounds!!! "+input+"/"+(Math.pow(2, 16)/2));
 			}
 	}
 	this.send = function(object){

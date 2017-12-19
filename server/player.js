@@ -199,7 +199,7 @@ lostking.item_default = function(blueprint){
 
 eval(fs.readFileSync('item_data.js')+'');
 
-henk = new lostking.player(-1, "Henk");
+/*henk = new lostking.player(-1, "Henk");
 henk.inventory.add(new lostking.item_default(item.blueprint.empty));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
@@ -208,4 +208,4 @@ henk.inventory.add(new lostking.item_default(item.blueprint.test));
 console.log(henk.inventory.slot_list);
 console.log(henk.inventory.drop(henk.inventory.slot_list[8]));
 
-console.log(henk.inventory.slot_list);
+console.log(henk.inventory.slot_list);*/
