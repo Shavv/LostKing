@@ -94,6 +94,9 @@
       <script>scripts\amp_receive.gml</script>
       <script>scripts\amp_read.gml</script>
     </scripts>
+    <scripts name="Item">
+      <script>scripts\item_get_index_from_name.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_gms1</font>

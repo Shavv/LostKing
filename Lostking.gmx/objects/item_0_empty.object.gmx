@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Item Init
 //Item header, required variables:
-index = 0;//Indexes must be unique for every item
+index = item_get_index_from_name(object_get_name(object_index));//Indexes must be unique for every item
 name = "empty";//Name
 max_stack_size = 1;//Biggest stack possible
 rarity = 0;
