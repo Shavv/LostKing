@@ -286,8 +286,6 @@ henk.inventory.use(henk.inventory.slot_list[3]);
 console.log(henk.inventory.slot_list);
 console.log(henk.equipment.slot_list[9].item_list[0]);
 
-console.log("Slot ring:");
-console.log(henk.equipment.slot_list[18].item_list[0]);
 henk.equipment.dequip(henk.equipment.slot_list[9]);
 console.log(henk.inventory.slot_list);
 console.log(henk.equipment.slot_list[9].item_list[0]);*/
