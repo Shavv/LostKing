@@ -237,6 +237,33 @@ lostking.equipment = function(player_object){
 		}
 		return false;
 	}
+	this.drag_to_inventory = function(equipment_slot, inventory_slot){
+		if(equipment_slot.item_list.length>0){
+			if(inventory_slot.item_list.length==0){//Drag to empty slot
+				inventory_slot.item_list = equipment_slot.item_list;
+				equipment_slot.item_list = [];
+				return true;
+			}else{
+				var first_item = inventory_slot.item_list[0];
+					if(first_item.blueprint.index==equipment_slot.item_list[0].blueprint.index){//Add to existing stack
+						if(equipment_slot.item_list.length<inventory_slot.item_list[0].blueprint.max_stack_size){
+							inventory_slot.item_list.push(equipment_slot.item_list[0]);
+							equipment_slot.item_list.splice(0, 1);
+							return true;
+						}
+					}else if(first_item.blueprint.action_index==item.action.equipable){//Swap
+						var tmp_list = inventory_slot.item_list;
+						inventory_slot.item_list = equipment_slot.item_list;
+						equipment_slot.item_list = tmp_list;
+						return true;
+					}
+			}
+		}
+		return false;
+	}
+	this.drag_from_inventory = function(equipment_slot, inventory_slot){
+		
+	}
 }
 lostking.item_slot = function(){
 	this.item_list = [];
@@ -269,7 +296,7 @@ lostking.item_equipable = function(blueprint){
 
 eval(fs.readFileSync('item_data.js')+'');
 
-/*henk = new lostking.player(-1, "Henk");
+henk = new lostking.player(-1, "Henk");
 henk.inventory.add(new lostking.item_default(item.blueprint.empty));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
@@ -281,11 +308,11 @@ henk.inventory.add(new lostking.item_equipable(item.blueprint.helmet));
 
 console.log(henk.inventory.slot_list);
 
-henk.inventory.use(henk.inventory.slot_list[3]);
+henk.inventory.use(henk.inventory.slot_list[4]);
 
 console.log(henk.inventory.slot_list);
 console.log(henk.equipment.slot_list[9].item_list[0]);
 
-henk.equipment.dequip(henk.equipment.slot_list[9]);
+console.log(henk.equipment.drag_to_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[4]));
 console.log(henk.inventory.slot_list);
-console.log(henk.equipment.slot_list[9].item_list[0]);*/
+console.log(henk.equipment.slot_list[9].item_list[0]);
