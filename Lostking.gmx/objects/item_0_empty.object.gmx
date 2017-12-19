@@ -42,7 +42,8 @@ action_index = t_default;
 
 Equipable:
 action_index = t_equipable;
-equipment_slot = q_helmet
+equipment_slot = q_helmet;
+durability = 1;
 //Todo
 
 Consumable:
