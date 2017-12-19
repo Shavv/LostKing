@@ -140,7 +140,29 @@ lostking.inventory = function(player_object){
 			}
 		return false;
 	}
-	this.equip = function(slot_index){
+	this.drop = function(origin_slot){
+		if(origin_slot.item_list.length>0){
+			if(origin_slot.item_list[0].blueprint.dropable){
+				var current_item_list = origin_slot.item_list;
+				origin_slot.item_list = [];
+					
+				return current_item_list;
+			}
+		}
+		return null;
+	}
+	this.drop_single = function(origin_slot){
+		if(origin_slot.item_list.length>0){
+			if(origin_slot.item_list[0].blueprint.dropable){
+				return origin_slot.item_list.splice(0, 1);
+			}
+		}
+		return null;
+	}
+	this.use = function(origin_slot){
+		
+	}
+	this.equip = function(origin_slot){
 		
 	}
 }
@@ -161,6 +183,7 @@ lostking.item_default_blueprint = function(index, name, max_stack_size, rarity){
 	this.index = index;
 	this.name = name;
 	this.max_stack_size = max_stack_size;
+	this.dropable = true;
 	this.action_index = 0;
 	this.rarity = rarity;
 }
@@ -177,6 +200,6 @@ henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 
 console.log(henk.inventory.slot_list);
+console.log(henk.inventory.drop(henk.inventory.slot_list[8]));
 
-console.log(henk.inventory.drag_single(henk.inventory.slot_list[2], henk.inventory.slot_list[0]));
 console.log(henk.inventory.slot_list);
