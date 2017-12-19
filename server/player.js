@@ -26,7 +26,7 @@ lostking.inventory = function(player_object){
 	this.slot_list = [];
 	var i;
 		for(i=0; i<this.slot_amount; i++){
-			this.slot_list.push(new lostking.item_slot());
+			this.slot_list.push(new lostking.item_slot(i));
 		}
 	this.add = function(item){
 		var added = false;
@@ -176,7 +176,7 @@ lostking.equipment = function(player_object){
 	this.slot_list = [];
 	var i;
 		for(i=0; i<this.slot_amount; i++){
-			this.slot_list.push(new lostking.item_slot());
+			this.slot_list.push(new lostking.item_slot(i));
 		}
 	this.find_empty = function(equipment_slot_index){
 		var equipment_slot_list = equipment.slot[equipment_slot_index];
@@ -198,32 +198,23 @@ lostking.equipment = function(player_object){
 			}
 		return first_result;
 	}
+	this.check_if_item_fits_in_slot = function(item, equipment_slot){
+		var equipment_slot_list = equipment.slot[item.blueprint.equipment_slot];
+		var i;
+			for(i=0; i<equipment_slot_list.length; i++){
+				var result_slot_index = equipment_slot_list[i];//Slot of the same type
+					if(result_slot_index==equipment_slot.index){
+						return true;
+					}
+			}
+		return false;
+	}
 	this.equip = function(inventory_slot){
 		if(inventory_slot.item_list.length>0){
 			var first_item = inventory_slot.item_list[0];
-				if(first_item.blueprint.action_index==item.action.equipable){
-					var equipment_slot = this.find_empty(first_item.blueprint.equipment_slot);
-						if(equipment_slot!=null){
-							if(equipment_slot.item_list.length==0){//When equipment slot is empty
-								equipment_slot.item_list.push(inventory_slot.item_list[0]);
-								inventory_slot.item_list.splice(0, 1);
-								return true;
-							}else if(equipment_slot.item_list.length==1){//When equipment slot is full
-								if(inventory_slot.item_list.length==1){//Swap
-									var tmp_list = equipment_slot.item_list;
-									equipment_slot.item_list = inventory_slot.item_list;
-									inventory_slot.item_list = tmp_list;
-									return true;
-								}else{//Try to add object to inventory
-									var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
-										if(result){
-											equipment_slot.item_list = [inventory_slot.item_list[0]];
-											inventory_slot.item_list.splice(0, 1);
-											return true;
-										}
-								}
-							}
-						}
+			var equipment_slot = this.find_empty(first_item.blueprint.equipment_slot);
+				if(equipment_slot!=null){
+					this.drag_from_inventory(equipment_slot, inventory_slot);
 				}
 		}
 		return false;
@@ -262,10 +253,35 @@ lostking.equipment = function(player_object){
 		return false;
 	}
 	this.drag_from_inventory = function(equipment_slot, inventory_slot){
-		
+			if(inventory_slot.item_list.length>0){
+				var first_item = inventory_slot.item_list[0];
+					if(first_item.blueprint.action_index==item.action.equipable && this.check_if_item_fits_in_slot(first_item, equipment_slot)){
+						if(equipment_slot.item_list.length==0){//When equipment slot is empty
+							equipment_slot.item_list.push(inventory_slot.item_list[0]);
+							inventory_slot.item_list.splice(0, 1);
+							return true;
+						}else if(equipment_slot.item_list.length==1){//When equipment slot is full
+							if(inventory_slot.item_list.length==1){//Swap
+								var tmp_list = equipment_slot.item_list;
+								equipment_slot.item_list = inventory_slot.item_list;
+								inventory_slot.item_list = tmp_list;
+								return true;
+							}else{//Try to add object to inventory
+								var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
+									if(result){
+										equipment_slot.item_list = [inventory_slot.item_list[0]];
+										inventory_slot.item_list.splice(0, 1);
+										return true;
+									}
+							}
+						}
+					}
+			}
+		return false;
 	}
 }
-lostking.item_slot = function(){
+lostking.item_slot = function(index){
+	this.index = index;
 	this.item_list = [];
 }
 lostking.item_default_blueprint = function(index, name, max_stack_size, rarity){
@@ -296,7 +312,7 @@ lostking.item_equipable = function(blueprint){
 
 eval(fs.readFileSync('item_data.js')+'');
 
-henk = new lostking.player(-1, "Henk");
+/*henk = new lostking.player(-1, "Henk");
 henk.inventory.add(new lostking.item_default(item.blueprint.empty));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
@@ -308,11 +324,12 @@ henk.inventory.add(new lostking.item_equipable(item.blueprint.helmet));
 
 console.log(henk.inventory.slot_list);
 
-henk.inventory.use(henk.inventory.slot_list[4]);
+console.log(henk.equipment.drag_from_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[3]));
+console.log(henk.equipment.drag_from_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[4]));
 
 console.log(henk.inventory.slot_list);
-console.log(henk.equipment.slot_list[9].item_list[0]);
+console.log(henk.equipment.slot_list[9].item_list[0]);*/
 
-console.log(henk.equipment.drag_to_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[4]));
+/*console.log(henk.equipment.drag_to_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[4]));
 console.log(henk.inventory.slot_list);
-console.log(henk.equipment.slot_list[9].item_list[0]);
+console.log(henk.equipment.slot_list[9].item_list[0]);*/
