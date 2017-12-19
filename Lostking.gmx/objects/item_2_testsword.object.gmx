@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Item Init
 //Item header, required variables:
-index = 0;//Indexes must be unique for every item
+index = 2;//Indexes must be unique for every item
 name = "Test Sword";//Name
 max_stack_size = 1;//Biggest stack possible
 rarity = 0;
