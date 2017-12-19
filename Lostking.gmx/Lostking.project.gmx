@@ -95,7 +95,9 @@
       <script>scripts\amp_read.gml</script>
     </scripts>
     <scripts name="Item">
-      <script>scripts\item_get_index_from_name.gml</script>
+      <script>scripts\get_index_from_item_name.gml</script>
+      <script>scripts\create_item_list.gml</script>
+      <script>scripts\find_item_object.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -107,6 +109,7 @@
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_cam</object>
+    <object>objects\obj_network_controller</object>
     <object>objects\DISPLAY</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_test_tree</object>
@@ -118,13 +121,13 @@
       <object>objects\SHADOW</object>
       <object>objects\obj_mouse_click</object>
     </objects>
-    <object>objects\obj_network_controller</object>
     <object>objects\obj_other_player</object>
     <objects name="items">
       <objects name="other">
         <object>objects\item_0_empty</object>
         <object>objects\item_1_lumber</object>
         <object>objects\item_2_testsword</object>
+        <object>objects\item_4</object>
       </objects>
       <object>objects\obj_item_controller</object>
     </objects>

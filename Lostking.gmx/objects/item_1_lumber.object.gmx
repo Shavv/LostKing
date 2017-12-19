@@ -26,14 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>//Item header, required variables:
-index = item_get_index_from_name(object_get_name(object_index));//Indexes must be unique for every item
+index = get_index_from_item_name(object_get_name(object_index));//Indexes must be unique for every item
 name = "Lumber";//Name
 max_stack_size = 100;//Biggest stack possible
 action_index = t_default;//Type of action this item performs when pressed with right mouse button
 rarity = 0;
 dropable = false;
-
-ds_list_add(item_controller.item_list, id);
 </string>
           </argument>
         </arguments>

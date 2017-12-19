@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>item_list = ds_list_create();
+            <string>item_list = ds_map_create();
+create_item_list();
 </string>
           </argument>
         </arguments>

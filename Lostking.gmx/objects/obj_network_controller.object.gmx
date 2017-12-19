@@ -62,7 +62,6 @@ hnet_message_start(6);
 hnet_write_string(name);
 hnet_write_byte(7);
 hnet_message_send();
-
 </string>
           </argument>
         </arguments>

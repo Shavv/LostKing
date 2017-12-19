@@ -25,44 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Item Init
-//Item header, required variables:
+            <string>//Item header, required variables:
 index = get_index_from_item_name(object_get_name(object_index));//Indexes must be unique for every item
-name = "empty";//Name
-max_stack_size = 1;//Biggest stack possible
+name = "Bam!!!";//Name
+max_stack_size = 100;//Biggest stack possible
+action_index = t_default;//Type of action this item performs when pressed with right mouse button
 rarity = 0;
 dropable = false;
-
-action_index = t_default;//Type of action this item performs when pressed with right mouse button
-
-
-/*
-List of possible actions and extra variables that need to be set for each onelyn:::
-
-No action:
-action_index = t_default;
-
-Equipable:
-action_index = t_equipable;
-equipment_slot = q_helmet;
-durability = 1;
-//Todo
-
-Consumable:
-action_index = t_consumable;
-//Todo
-
-Relic:
-action_index = t_relic;
-//Todo
-
-Lynx:
-action_index = t_lynx;
-
-Tradepack:
-action_index = t_tradepack;
-//Todo
-*/
 </string>
           </argument>
         </arguments>

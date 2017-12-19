@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Item Init
 //Item header, required variables:
-index = item_get_index_from_name(object_get_name(object_index));//Indexes must be unique for every item
+index = get_index_from_item_name(object_get_name(object_index));//Indexes must be unique for every item
 name = "Test Sword";//Name
 max_stack_size = 1;//Biggest stack possible
 rarity = 0;
@@ -36,8 +36,6 @@ dropable = false;
 action_index = t_equipable;
 equipment_slot = q_mainhand;
 durability = 1;
-
-ds_list_add(item_controller.item_list, id);
 
 
 /*
