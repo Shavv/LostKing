@@ -160,7 +160,13 @@ lostking.inventory = function(player_object){
 		return null;
 	}
 	this.use = function(origin_slot){
-		
+		if(origin_slot.item_list.length>0){
+			var first_item = origin_slot.item_list[0];
+			var action_index = first_item.blueprint.action_index;
+				if(action_index==item.action.equipable){//Equipment
+					this.equip(origin_slot);
+				}
+		}
 	}
 	this.equip = function(origin_slot){
 		

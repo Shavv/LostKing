@@ -31,6 +31,7 @@ name = "empty";//Name
 max_stack_size = 1;//Biggest stack possible
 action_index = t_default;//Type of action this item performs when pressed with right mouse button
 rarity = 0;
+dropable = false;
 
 ds_list_add(item_controller.item_list, id);
 /*
