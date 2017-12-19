@@ -128,12 +128,13 @@
     <room>rooms\display_set</room>
     <room>rooms\test_room</room>
   </rooms>
-  <constants number="30">
+  <constants number="31">
     <constant name="t_default">0</constant>
     <constant name="t_equipable">1</constant>
     <constant name="t_consumable">2</constant>
     <constant name="t_relic">3</constant>
     <constant name="t_lynx">4</constant>
+    <constant name="t_tradepack">5</constant>
     <constant name="q_helmet">0</constant>
     <constant name="q_chest">1</constant>
     <constant name="q_shoulders">2</constant>

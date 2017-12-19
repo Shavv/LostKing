@@ -55,6 +55,9 @@ action_index = t_relic;
 
 Lynx:
 action_index = t_lynx;
+
+Tradepack:
+action_index = t_tradepack;
 //Todo
 */
 </string>
