@@ -207,23 +207,32 @@ lostking.equipment = function(player_object){
 							if(equipment_slot.item_list.length==0){//When equipment slot is empty
 								equipment_slot.item_list.push(inventory_slot.item_list[0]);
 								inventory_slot.item_list.splice(0, 1);
-								console.log("Equip A");
+								return true;
 							}else if(equipment_slot.item_list.length==1){//When equipment slot is full
 								if(inventory_slot.item_list.length==1){//Swap
 									var tmp_list = equipment_slot.item_list;
 									equipment_slot.item_list = inventory_slot.item_list;
 									inventory_slot.item_list = tmp_list;
-									console.log("Equip B");
+									return true;
 								}else{//Try to add object to inventory
 									var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
 										if(result){
 											equipment_slot.item_list = [inventory_slot.item_list[0]];
 											inventory_slot.item_list.splice(0, 1);
-											console.log("Equip C");
+											return true;
 										}
 								}
 							}
 						}
+				}
+		}
+		return false;
+	}
+	this.dequip = function(equipment_slot){
+		if(equipment_slot.item_list.length>0){
+			var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
+				if(result){
+					equipment_slot.item_list = [];
 				}
 		}
 		return false;
@@ -260,7 +269,7 @@ lostking.item_equipable = function(blueprint){
 
 eval(fs.readFileSync('item_data.js')+'');
 
-henk = new lostking.player(-1, "Henk");
+/*henk = new lostking.player(-1, "Henk");
 henk.inventory.add(new lostking.item_default(item.blueprint.empty));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
@@ -273,33 +282,12 @@ henk.inventory.add(new lostking.item_equipable(item.blueprint.helmet));
 console.log(henk.inventory.slot_list);
 
 henk.inventory.use(henk.inventory.slot_list[3]);
-henk.inventory.use(henk.inventory.slot_list[5])
-console.log(henk.inventory.slot_list);
-
-console.log("Slot:");
-console.log(henk.equipment.slot_list[9].item_list[0]);
-henk.inventory.use(henk.inventory.slot_list[4]);
-console.log("Slot:");
-console.log(henk.equipment.slot_list[0].item_list[0]);
-console.log(henk.equipment.slot_list[9].item_list[0]);
 
 console.log(henk.inventory.slot_list);
-
-henk.inventory.add(new lostking.item_equipable(item.blueprint.ring_silver));
-henk.inventory.add(new lostking.item_equipable(item.blueprint.ring_silver));
-henk.inventory.add(new lostking.item_equipable(item.blueprint.ring_gold));
-
-henk.inventory.use(henk.inventory.slot_list[5]);
-henk.inventory.use(henk.inventory.slot_list[6]);
+console.log(henk.equipment.slot_list[9].item_list[0]);
 
 console.log("Slot ring:");
 console.log(henk.equipment.slot_list[18].item_list[0]);
-console.log(henk.equipment.slot_list[19].item_list[0]);
-
+henk.equipment.dequip(henk.equipment.slot_list[9]);
 console.log(henk.inventory.slot_list);
-henk.inventory.use(henk.inventory.slot_list[7]);
-console.log("Slot ring:");
-console.log(henk.equipment.slot_list[18].item_list[0]);
-console.log(henk.equipment.slot_list[19].item_list[0]);
-
-console.log(henk.inventory.slot_list);
+console.log(henk.equipment.slot_list[9].item_list[0]);*/
