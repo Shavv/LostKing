@@ -31,6 +31,7 @@
       <sprite>sprites\spr_equipment</sprite>
       <sprite>sprites\spr_test_item</sprite>
       <sprite>sprites\spr_test_item_2</sprite>
+      <sprite>sprites\item_lumber</sprite>
     </sprites>
     <sprites name="concept">
       <sprite>sprites\sprite33</sprite>
@@ -120,6 +121,7 @@
     <objects name="items">
       <objects name="other">
         <object>objects\item_0_empty</object>
+        <object>objects\item_1_lumber</object>
       </objects>
       <object>objects\obj_item_controller</object>
     </objects>
