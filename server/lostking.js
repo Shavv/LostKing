@@ -4,6 +4,7 @@ var net = require('net');
 eval(fs.readFileSync('sources/network.js')+'');
 console.log("Load: network.js");
 
+eval(fs.readFileSync('blade_server.js')+'');
 eval(fs.readFileSync('profile.js')+'');
 eval(fs.readFileSync('player.js')+'');
 
