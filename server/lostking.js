@@ -83,7 +83,20 @@ loginserver_socket_object = function(){
 				message.write_byte16(player.hp);
 				
 				message.send_other(object);
+			break;
+			case 30://Drag item inventory
+				var player = object.player_object;
+				var origin_index = buffer.read();
+				var destination_index = buffer.read();
 				
+				player.com.inventory.drag(origin_index, destination_index);
+			break;
+			case 31://Drag single item inventory
+				var player = object.player_object;
+				var origin_index = buffer.read();
+				var destination_index = buffer.read();
+				
+				player.com.inventory.drag_single(origin_index, destination_index);
 			break;
 		}
 	}

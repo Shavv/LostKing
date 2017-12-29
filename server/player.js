@@ -7,7 +7,7 @@ lostking.player = function(hnet_object, name){
 	
 	this.id = hnet_object.id;
 	this.world = -1;
-	this.permission = 0;//0 = Regular player, 1 = Moderators, 2 = Developers, 3 = Admin
+	this.permission = 1;//0 = Not signed in, 1 = Regular player, 2 = Moderators, 3 = Developers, 4 = Admin
 	this.name = name;
 	this.x = 500;
 	this.y = 500;
@@ -17,7 +17,59 @@ lostking.player = function(hnet_object, name){
 	
 	this.inventory = new lostking.inventory(this);
 	this.equipment = new lostking.equipment(this);
+	
+	this.com = new Object;
+	this.com.inventory = new lostking.com.inventory(this);
+	
 	lostking.player_list.push(this);
+}
+lostking.com = new Object;
+lostking.com.inventory = function(player_object){
+	this.player_object = player_object;
+	
+	this.drag = function(origin_index, destination_index){
+		var slot_amount = this.player_object.inventory.slot_amount;
+		var permission = this.player_object.permission;
+			if(permission>0){
+				if(origin_index>=0 && origin_index<slot_amount && destination_index>=0 && destination_index<slot_amount){
+					return this.player_object.inventory.drag(this.player_object.inventory.slot_list[origin_index], this.player_object.inventory.slot_list[destination_index]);
+				}else{
+					console.log("lostking.com error: drag out of bounds");
+				}
+			}else{
+				console.log("lostking.com error: drag permission denied");
+			}
+		return false;
+	}
+	this.drag_single = function(origin_index, destination_index){
+		var slot_amount = this.player_object.inventory.slot_amount;
+		var permission = this.player_object.permission;
+			if(permission>0){
+				if(origin_index>=0 && origin_index<slot_amount && destination_index>=0 && destination_index<slot_amount){
+					return this.player_object.inventory.drag_single(this.player_object.inventory.slot_list[origin_index], this.player_object.inventory.slot_list[destination_index]);
+				}else{
+					console.log("lostking.com error: drag_single out of bounds");
+				}
+			}else{
+				console.log("lostking.com error: drag_single permission denied");
+			}
+		return false;
+	}
+	this.use = function(origin_index){
+		var slot_amount = this.player_object.inventory.slot_amount;
+		var permission = this.player_object.permission;
+			if(permission>0){
+				if(origin_index>=0 && origin_index<slot_amount){
+					this.player_object.inventory.use(this.player_object.inventory.slot_list[origin_index]);
+					return true;
+				}else{
+					console.log("lostking.com error: use out of bounds");
+				}
+			}else{
+				console.log("lostking.com error: use permission denied");
+			}
+		return false;
+	}
 }
 lostking.inventory = function(player_object){
 	this.player_object = player_object;
@@ -312,7 +364,7 @@ lostking.item_equipable = function(blueprint){
 
 eval(fs.readFileSync('item_data.js')+'');
 
-/*henk = new lostking.player(-1, "Henk");
+henk = new lostking.player(-1, "Henk");
 henk.inventory.add(new lostking.item_default(item.blueprint.empty));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));
@@ -328,7 +380,10 @@ console.log(henk.equipment.drag_from_inventory(henk.equipment.slot_list[9], henk
 console.log(henk.equipment.drag_from_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[4]));
 
 console.log(henk.inventory.slot_list);
-console.log(henk.equipment.slot_list[9].item_list[0]);*/
+console.log(henk.equipment.slot_list[9].item_list[0]);
+
+henk.com.inventory.drag(0, 29);
+console.log(henk.inventory.slot_list);
 
 /*console.log(henk.equipment.drag_to_inventory(henk.equipment.slot_list[9], henk.inventory.slot_list[4]));
 console.log(henk.inventory.slot_list);
