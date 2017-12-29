@@ -24,8 +24,10 @@ lostking.player = function(socket, name){
 	this.inventory.com = this.com;
 	
 	//Place for defining
-	this.inventory.add(new lostking.item_equipable(item.blueprint.list[1]));
-	this.inventory.add(new lostking.item_equipable(item.blueprint.list[1]));
+	this.inventory.add(new lostking.item_default(item.blueprint.list[1]));
+	this.inventory.add(new lostking.item_default(item.blueprint.list[1]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[2]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[2]));
 	lostking.player_list.push(this);
 }
 lostking.com = new Object;
@@ -86,7 +88,7 @@ lostking.com.inventory = function(player_object){
 					var length = updated_slot.item_list.length;
 					message.write_byte(updated_slot.index);
 						if(length>0){
-							message.write_byte(updated_slot.item_list[i].blueprint.index);
+							message.write_byte(updated_slot.item_list[0].blueprint.index);
 						}else{
 							message.write_byte(0);
 						}
