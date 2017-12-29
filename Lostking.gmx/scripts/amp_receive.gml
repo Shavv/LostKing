@@ -48,7 +48,6 @@ switch(receive_package_id){
         var inventory_index = amp_read();
         var item_index = amp_read();
         var slot_amount = amp_read();
-        instance_create(0, 0, find_item_object(item_index));
-        show_message_async(slot_amount);
+        update_inventory_slot_regular(inventory_index, item_index, slot_amount);
     break;
 }

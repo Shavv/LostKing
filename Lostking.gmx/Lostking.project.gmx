@@ -99,6 +99,10 @@
       <script>scripts\create_item_list.gml</script>
       <script>scripts\find_item_object.gml</script>
     </scripts>
+    <scripts name="Inventory">
+      <script>scripts\find_inventory_slot.gml</script>
+      <script>scripts\update_inventory_slot_regular.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_gms1</font>
@@ -130,6 +134,10 @@
         <object>objects\item_4</object>
       </objects>
       <object>objects\obj_item_controller</object>
+    </objects>
+    <objects name="inventory">
+      <object>objects\obj_inventory_controller</object>
+      <object>objects\obj_inventory_slot</object>
     </objects>
   </objects>
   <rooms name="rooms">

@@ -136,6 +136,7 @@
     <instance objName="obj_test_tree" x="121" y="783" name="inst_235242B6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_network_controller" x="207" y="103" name="inst_51B2A51D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_item_controller" x="179" y="114" name="inst_AB6E5013" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_inventory_controller" x="132" y="80" name="inst_AC940604" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
