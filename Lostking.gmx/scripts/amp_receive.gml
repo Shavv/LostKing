@@ -44,4 +44,11 @@ switch(receive_package_id){
                 }
             }
     break;
+    case 40://Update inventory slot
+        var inventory_index = amp_read();
+        var item_index = amp_read();
+        var slot_amount = amp_read();
+        instance_create(0, 0, find_item_object(item_index));
+        show_message_async(slot_amount);
+    break;
 }

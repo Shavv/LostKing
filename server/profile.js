@@ -19,3 +19,8 @@ new hnet.profile(33, new Array(h_byte, h_byte));//C>S Drag item from equipment t
 new hnet.profile(35, new Array(h_byte));//S>C Drag response [0 = Denied | 1 = Succesfull]
 new hnet.profile(36, new Array(h_byte));//C>S Use inventory item [index]
 new hnet.profile(37, new Array(h_byte));//C>S Dequip equipment [index]
+
+//Slots
+new hnet.profile(40, new Array(h_byte, h_byte, h_byte16));//S>C Send item in inventory slot regular [slot_index, item_index, amount]
+
+new hnet.profile(45, new Array(h_byte, h_byte, h_byte16));//S>C Send item in equipment slot regular [slot_index, item_index, amount]

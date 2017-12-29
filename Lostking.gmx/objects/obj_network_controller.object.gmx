@@ -55,6 +55,11 @@ hnet_profile_add(9, h_default, h_byte);//Image_yscale
 hnet_profile_add(9, h_default, h_byte16);//Image_index
 hnet_profile_add(9, h_default, h_byte16);//Hp
 
+hnet_profile_create(40, -1);
+hnet_profile_add(40, h_default, h_byte);//Inventory index
+hnet_profile_add(40, h_default, h_byte);//Item index
+hnet_profile_add(40, h_default, h_byte16);//Slot amount
+
 var name = "test";
 
 //Send name, login message
