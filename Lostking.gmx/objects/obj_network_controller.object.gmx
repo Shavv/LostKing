@@ -55,10 +55,22 @@ hnet_profile_add(9, h_default, h_byte);//Image_yscale
 hnet_profile_add(9, h_default, h_byte16);//Image_index
 hnet_profile_add(9, h_default, h_byte16);//Hp
 
+//C&gt;S Drag item
+hnet_profile_create(30, -1);
+hnet_profile_add(30, h_default, h_byte);//Origin index
+hnet_profile_add(30, h_default, h_byte);//Destination index
+
+//C&gt;S Drag item_single
+hnet_profile_create(31, -1);
+hnet_profile_add(31, h_default, h_byte);//Origin index
+hnet_profile_add(31, h_default, h_byte);//Destination index
+
+//S&gt;C Update inventory item
 hnet_profile_create(40, -1);
 hnet_profile_add(40, h_default, h_byte);//Inventory index
 hnet_profile_add(40, h_default, h_byte);//Item index
 hnet_profile_add(40, h_default, h_byte16);//Slot amount
+
 
 var name = "test";
 

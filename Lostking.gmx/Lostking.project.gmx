@@ -94,6 +94,9 @@
     <scripts name="LostKing Multiplayer">
       <script>scripts\amp_receive.gml</script>
       <script>scripts\amp_read.gml</script>
+      <script>scripts\amp_inventory_use.gml</script>
+      <script>scripts\amp_inventory_drag.gml</script>
+      <script>scripts\amp_inventory_drag_single.gml</script>
     </scripts>
     <scripts name="Item">
       <script>scripts\get_index_from_item_name.gml</script>

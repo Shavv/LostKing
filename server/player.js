@@ -39,6 +39,7 @@ lostking.com.inventory = function(player_object){
 		var permission = this.player_object.permission;
 			if(permission>0){
 				if(origin_index>=0 && origin_index<slot_amount && destination_index>=0 && destination_index<slot_amount){
+					console.log("Perform drag");
 					return this.player_object.inventory.drag(this.player_object.inventory.slot_list[origin_index], this.player_object.inventory.slot_list[destination_index]);
 				}else{
 					console.log("lostking.com error: drag out of bounds");
@@ -222,7 +223,9 @@ lostking.inventory = function(player_object){
 					this.com.inventory.update();
 					return true;
 				}
-			}else if(origin_slot.item_list.length>0){//Poor old swap
+			}
+			if(origin_slot.item_list.length>0){//Poor old swap
+				console.log("Poor old swap");
 				var tmp_list = destination_slot.item_list;//Old item in end_slot list
 				destination_slot.item_list = origin_slot.item_list;
 				origin_slot.item_list = tmp_list;
