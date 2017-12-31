@@ -20,8 +20,10 @@ lostking.player = function(socket, name){
 	
 	this.com = new Object;
 	this.com.inventory = new lostking.com.inventory(this);
+	this.com.equipment = new lostking.com.equipment(this);
 	
 	this.inventory.com = this.com;
+	this.equipment.com = this.com;
 	
 	//Place for defining
 	this.inventory.add(new lostking.item_default(item.blueprint.list[1]));
@@ -30,75 +32,7 @@ lostking.player = function(socket, name){
 	this.inventory.add(new lostking.item_equipable(item.blueprint.list[2]));
 	lostking.player_list.push(this);
 }
-lostking.com = new Object;
-lostking.com.inventory = function(player_object){
-	this.player_object = player_object;
-	
-	this.drag = function(origin_index, destination_index){
-		var slot_amount = this.player_object.inventory.slot_amount;
-		var permission = this.player_object.permission;
-			if(permission>0){
-				if(origin_index>=0 && origin_index<slot_amount && destination_index>=0 && destination_index<slot_amount){
-					console.log("Perform drag");
-					return this.player_object.inventory.drag(this.player_object.inventory.slot_list[origin_index], this.player_object.inventory.slot_list[destination_index]);
-				}else{
-					console.log("lostking.com error: drag out of bounds");
-				}
-			}else{
-				console.log("lostking.com error: drag permission denied");
-			}
-		return false;
-	}
-	this.drag_single = function(origin_index, destination_index){
-		var slot_amount = this.player_object.inventory.slot_amount;
-		var permission = this.player_object.permission;
-			if(permission>0){
-				if(origin_index>=0 && origin_index<slot_amount && destination_index>=0 && destination_index<slot_amount){
-					return this.player_object.inventory.drag_single(this.player_object.inventory.slot_list[origin_index], this.player_object.inventory.slot_list[destination_index]);
-				}else{
-					console.log("lostking.com error: drag_single out of bounds");
-				}
-			}else{
-				console.log("lostking.com error: drag_single permission denied");
-			}
-		return false;
-	}
-	this.use = function(origin_index){
-		var slot_amount = this.player_object.inventory.slot_amount;
-		var permission = this.player_object.permission;
-			if(permission>0){
-				if(origin_index>=0 && origin_index<slot_amount){
-					this.player_object.inventory.use(this.player_object.inventory.slot_list[origin_index]);
-					return true;
-				}else{
-					console.log("lostking.com error: use out of bounds");
-				}
-			}else{
-				console.log("lostking.com error: use permission denied");
-			}
-		return false;
-	}
-	this.update = function(){
-		console.log("lostking.com update");
-		if(this.player_object.socket!=-1){//Object is no test object
-			var i;
-				for(i=0; i<this.player_object.inventory.updated_slot_list.length; i++){
-					var updated_slot = this.player_object.inventory.updated_slot_list[i]; 
-					var message = new hnet.message(40);
-					console.log("Send 40");
-					var length = updated_slot.item_list.length;
-					message.write_byte(updated_slot.index);
-						if(length>0){
-							message.write_byte(updated_slot.item_list[0].blueprint.index);
-						}else{
-							message.write_byte(0);
-						}
-					message.write_byte16(length);
-					message.send(this.player_object.socket);
-				}
-		}
-	}
-}
+eval(fs.readFileSync('player_com.js')+'');
 lostking.inventory = function(player_object){
 	this.player_object = player_object;
 	this.com = undefined;//Has to be set later
@@ -283,13 +217,26 @@ lostking.inventory = function(player_object){
 }
 lostking.equipment = function(player_object){
 	this.player_object = player_object;
+	this.com = undefined;//Has to be set later
 	
 	this.slot_amount = 25;
 	this.slot_list = [];
+	this.updated_slot_list = [];
 	var i;
 		for(i=0; i<this.slot_amount; i++){
 			this.slot_list.push(new lostking.item_slot(i));
 		}
+	this.update = function(slot){
+		var i;
+			for(i=0; i<this.updated_slot_list.length; i++){
+				var updated_slot = this.updated_slot_list[i]; 
+					if(updated_slot.index==slot.index){
+						return false;
+					}
+			}
+		this.updated_slot_list.push(slot);
+		return true;
+	}
 	this.find_empty = function(equipment_slot_index){
 		var equipment_slot_list = equipment.slot[equipment_slot_index];
 		var first_result = null;
@@ -375,6 +322,9 @@ lostking.equipment = function(player_object){
 							equipment_slot.item_list.push(inventory_slot.item_list[0]);
 							inventory_slot.item_list.splice(0, 1);
 							this.player_object.inventory.update(inventory_slot);
+							this.player_object.equipment.update(equipment_slot);
+							this.com.inventory.update();
+							this.com.equipment.update();
 							return true;
 						}else if(equipment_slot.item_list.length==1){//When equipment slot is full
 							if(inventory_slot.item_list.length==1){//Swap
@@ -382,6 +332,9 @@ lostking.equipment = function(player_object){
 								equipment_slot.item_list = inventory_slot.item_list;
 								inventory_slot.item_list = tmp_list;
 								this.player_object.inventory.update(inventory_slot);
+								this.player_object.equipment.update(equipment_slot);
+								this.com.inventory.update();
+								this.com.equipment.update();
 								return true;
 							}else{//Try to add object to inventory
 								var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
@@ -389,6 +342,9 @@ lostking.equipment = function(player_object){
 										equipment_slot.item_list = [inventory_slot.item_list[0]];
 										inventory_slot.item_list.splice(0, 1);
 										this.player_object.inventory.update(inventory_slot);
+										this.player_object.equipment.update(equipment_slot);
+										this.com.inventory.update();
+										this.com.equipment.update();
 										return true;
 									}
 							}

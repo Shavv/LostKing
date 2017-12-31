@@ -65,11 +65,21 @@ hnet_profile_create(31, -1);
 hnet_profile_add(31, h_default, h_byte);//Origin index
 hnet_profile_add(31, h_default, h_byte);//Destination index
 
+//C&gt;S Use item
+hnet_profile_create(36, -1);
+hnet_profile_add(36, h_default, h_byte);//Slot index
+
 //S&gt;C Update inventory item
 hnet_profile_create(40, -1);
 hnet_profile_add(40, h_default, h_byte);//Inventory index
 hnet_profile_add(40, h_default, h_byte);//Item index
 hnet_profile_add(40, h_default, h_byte16);//Slot amount
+
+//S&gt;C Update equipment item
+hnet_profile_create(45, -1);
+hnet_profile_add(45, h_default, h_byte);//Inventory index
+hnet_profile_add(45, h_default, h_byte);//Item index
+hnet_profile_add(45, h_default, h_byte16);//Slot amount
 
 
 var name = "test";

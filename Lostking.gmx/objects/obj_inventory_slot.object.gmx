@@ -68,6 +68,8 @@ var w = sprite_get_width(sprite_index), h = sprite_get_height(sprite_index);
             if(obj_inventory_controller.drag_item_index!=-1){
                 amp_inventory_drag_single(obj_inventory_controller.drag_item_index, index);
                 obj_inventory_controller.drag_item_index = -1;
+            }else{
+                amp_inventory_use(index);
             }
         }
     }

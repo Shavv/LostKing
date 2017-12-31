@@ -530,7 +530,6 @@ hnet.create_server = function(port, socket_object){
 		}
 
 		socket.on('data', function(data){
-			//console.log(data);
 			/*hnet.parse_receive_data(socket.object.hsd, data, function(buffer_object){*/
 			socket.object.hsd.check_stream(data, function(package_id, parameter_list){
 				if(typeof socket.object.receive == "function"){

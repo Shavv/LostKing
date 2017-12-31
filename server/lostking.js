@@ -98,6 +98,12 @@ loginserver_socket_object = function(){
 				
 				player.com.inventory.drag_single(origin_index, destination_index);
 			break;
+			case 36://Use item
+				var player = object.player_object;
+				var slot_index = buffer.read();
+
+				player.com.inventory.use(slot_index);
+			break;
 		}
 	}
 }
