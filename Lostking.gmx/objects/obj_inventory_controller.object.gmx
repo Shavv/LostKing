@@ -33,6 +33,9 @@ drag_interface = false;
 drag_interface_x = 0;
 drag_interface_y = 0;
 
+resize_interface_w = false;
+resize_interface_h = false;
+
 drag_item_index = -1;
 drag_item_x = 0;
 drag_item_y = 0;
@@ -88,13 +91,32 @@ drag_item_y = 0;
           <argument>
             <kind>1</kind>
             <string>var mx = device_mouse_x_to_gui(0), my = device_mouse_y_to_gui(0);
-
+var b = 3;//Border for resizeability
+var slot_w = 64;
+window_set_cursor(cr_default);
     if(!clicked_on_slot){
-        if(mx&gt;x and mx&lt;=x+w and my&gt;y and my&lt;=y+h and mouse_check_button_pressed(mb_left)){
-            drag_interface = true;
-            drag_interface_x = mx-x;
-            drag_interface_y = my-y;
-        }
+            if(mx&gt;x and mx&lt;=x+w-b and my&gt;y and my&lt;=y+h-b){//Drag window
+                if(mouse_check_button_pressed(mb_left)){
+                    drag_interface = true;
+                    drag_interface_x = mx-x;
+                    drag_interface_y = my-y;
+                }
+            }
+            if(mx&gt;x+w-b and mx&lt;=x+w and my&gt;y and my&lt;=y+h){
+                window_set_cursor(cr_size_we);
+                    if(mouse_check_button_pressed(mb_left)){
+                        resize_interface_w = true;
+                    }
+            }
+            if(mx&gt;x and mx&lt;=x+w and my&gt;y+h-b and my&lt;=y+h){
+                window_set_cursor(cr_size_ns);
+                    if(mouse_check_button_pressed(mb_left)){
+                        resize_interface_h = true;
+                    }
+            }
+            if(mx&gt;x+w-b and mx&lt;=x+w and my&gt;y+h-b and my&lt;=y+h){
+                window_set_cursor(cr_size_nwse);
+            }
     }
     if(drag_interface){
         x = min(max(0, mx-drag_interface_x), window_get_width()-w);
@@ -103,10 +125,26 @@ drag_item_y = 0;
                 drag_interface = false;
             }
     }
+    if(resize_interface_w){
+        window_set_cursor(cr_size_we);
+        w = max(mx-x, slot_w*2);
+            if(mouse_check_button_released(mb_left)){
+                resize_interface_w = false;
+            }
+    }
+    if(resize_interface_h){
+        window_set_cursor(cr_size_ns);
+        h = max(my-y, slot_w*2);
+            if(mouse_check_button_released(mb_left)){
+                resize_interface_h = false;
+            }
+    }
+    if(resize_interface_w &amp;&amp; resize_interface_h){
+        window_set_cursor(cr_size_nwse);
+    }
     
 draw_set_color(c_gray);
 draw_rectangle(x, y, x+w, y+h, false);
-var slot_w = 64;
 var h_slot_amount = max(floor((w-2*20)/slot_w), 1);
 var center_x = w/2;
 var slot_area_w = h_slot_amount*(slot_w+2);
