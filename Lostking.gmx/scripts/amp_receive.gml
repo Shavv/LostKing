@@ -54,6 +54,6 @@ switch(receive_package_id){
         var inventory_index = amp_read();
         var item_index = amp_read();
         var slot_amount = amp_read();
-        show_message_async(string(inventory_index)+" "+string(item_index));
+        update_equipment_slot_regular(inventory_index, item_index, slot_amount);
     break;
 }

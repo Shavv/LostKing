@@ -65,9 +65,33 @@ hnet_profile_create(31, -1);
 hnet_profile_add(31, h_default, h_byte);//Origin index
 hnet_profile_add(31, h_default, h_byte);//Destination index
 
+//C&gt;S Drag item_single
+hnet_profile_create(31, -1);
+hnet_profile_add(31, h_default, h_byte);//Origin index
+hnet_profile_add(31, h_default, h_byte);//Destination index
+
+//C&gt;S Drag item_from_inventory
+hnet_profile_create(32, -1);
+hnet_profile_add(32, h_default, h_byte);//Origin index
+hnet_profile_add(32, h_default, h_byte);//Destination index
+
+//C&gt;S Drag item_to_inventory
+hnet_profile_create(33, -1);
+hnet_profile_add(33, h_default, h_byte);//Origin index
+hnet_profile_add(33, h_default, h_byte);//Destination index
+
+//C&gt;S Drag item within equipment
+hnet_profile_create(34, -1);
+hnet_profile_add(34, h_default, h_byte);//Origin index
+hnet_profile_add(34, h_default, h_byte);//Destination index
+
 //C&gt;S Use item
 hnet_profile_create(36, -1);
 hnet_profile_add(36, h_default, h_byte);//Slot index
+
+//C&gt;S Dequip item
+hnet_profile_create(37, -1);
+hnet_profile_add(37, h_default, h_byte);//Slot index
 
 //S&gt;C Update inventory item
 hnet_profile_create(40, -1);

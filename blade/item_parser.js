@@ -143,9 +143,9 @@ ip.slot.list.push({name:"q_relic", value:14});
 ip.slot.list.push({name:"q_necklace", value:15});
 ip.slot.list.push({name:"q_earring", value:16});
 ip.slot.list.push({name:"q_ring", value:18});
-ip.slot.list.push({name:"q_skill", value:20});
-ip.slot.list.push({name:"q_skill_passive", value:23});
-ip.slot.list.push({name:"q_skill_ultimate", value:24});
+ip.slot.list.push({name:"q_lynx_default", value:20});
+ip.slot.list.push({name:"q_lynx_passive", value:23});
+ip.slot.list.push({name:"q_lynx_ultimate", value:24});
 ip.slot.find_value = function(name){
 	var i;
 		for(i=0; i<ip.slot.list.length; i++){

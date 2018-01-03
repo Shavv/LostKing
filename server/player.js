@@ -30,6 +30,9 @@ lostking.player = function(socket, name){
 	this.inventory.add(new lostking.item_default(item.blueprint.list[1]));
 	this.inventory.add(new lostking.item_equipable(item.blueprint.list[2]));
 	this.inventory.add(new lostking.item_equipable(item.blueprint.list[2]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[3]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[5]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[5]));
 	lostking.player_list.push(this);
 }
 eval(fs.readFileSync('player_com.js')+'');
@@ -56,7 +59,7 @@ lostking.inventory = function(player_object){
 		return true;
 	}
 	this.add = function(item){
-		var added = false;
+		var added = null;
 		var i;
 			for(i=0; i<this.slot_list.length; i++){//Add item to existing stack
 				var result_slot = this.slot_list[i];
@@ -65,29 +68,27 @@ lostking.inventory = function(player_object){
 							if(result_slot.item_list.length<item.blueprint.max_stack_size){
 								result_slot.item_list.push(item);
 								this.update(result_slot);
-								added = true;
+								added = result_slot;
 								break;
 							}
 						}
 					}
 			}
-			if(!added){
+			if(added==null){
 				for(i=0; i<this.slot_list.length; i++){//Add item to existing stack
 					var result_slot = this.slot_list[i];
 						if(result_slot.item_list.length==0){
 							result_slot.item_list.push(item);
 							this.update(result_slot);
-							added = true;
+							added = result_slot;
 							break;
 						}
 				}
 			}
-			if(added){
+			if(added!=null){
 				this.com.inventory.update();
-				return true;
-			}else{
-				return false;
 			}
+		return added;
 	}
 	this.check = function(item, amount){
 		var i;//When stack isn't full add it to item of same type
@@ -237,7 +238,23 @@ lostking.equipment = function(player_object){
 		this.updated_slot_list.push(slot);
 		return true;
 	}
+	this.drag = function(origin_slot, destination_slot){
+		if(origin_slot.item_list.length>0){//Poor old swap
+			if(this.check_if_item_fits_in_slot(origin_slot.item_list[0], destination_slot)){
+				console.log("Poor old swap equipment");
+				var tmp_list = destination_slot.item_list;//Old item in end_slot list
+				destination_slot.item_list = origin_slot.item_list;
+				origin_slot.item_list = tmp_list;
+				this.update(origin_slot);
+				this.update(destination_slot);
+				this.com.equipment.update();
+				return true;
+			}
+		}
+		return false;
+	}
 	this.find_empty = function(equipment_slot_index){
+		console.log("Slot ID:"+equipment_slot_index);
 		var equipment_slot_list = equipment.slot[equipment_slot_index];
 		var first_result = null;
 		var i, j;
@@ -271,6 +288,7 @@ lostking.equipment = function(player_object){
 	this.equip = function(inventory_slot){
 		if(inventory_slot.item_list.length>0){
 			var first_item = inventory_slot.item_list[0];
+			console.log(first_item);
 			var equipment_slot = this.find_empty(first_item.blueprint.equipment_slot);
 				if(equipment_slot!=null){
 					this.drag_from_inventory(equipment_slot, inventory_slot);
@@ -280,9 +298,14 @@ lostking.equipment = function(player_object){
 	}
 	this.dequip = function(equipment_slot){
 		if(equipment_slot.item_list.length>0){
-			var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
-				if(result){
+			var inventory_slot = this.player_object.inventory.add(equipment_slot.item_list[0]);
+				if(inventory_slot!=null){
 					equipment_slot.item_list = [];
+					this.player_object.inventory.update(inventory_slot);
+					this.player_object.equipment.update(equipment_slot);
+					this.com.inventory.update();
+					this.com.equipment.update();
+					return true;
 				}
 		}
 		return false;
@@ -293,6 +316,9 @@ lostking.equipment = function(player_object){
 				inventory_slot.item_list = equipment_slot.item_list;
 				equipment_slot.item_list = [];
 				this.player_object.inventory.update(inventory_slot);
+				this.player_object.equipment.update(equipment_slot);
+				this.com.inventory.update();
+							this.com.equipment.update();
 				return true;
 			}else{
 				var first_item = inventory_slot.item_list[0];
@@ -301,6 +327,9 @@ lostking.equipment = function(player_object){
 							inventory_slot.item_list.push(equipment_slot.item_list[0]);
 							equipment_slot.item_list.splice(0, 1);
 							this.player_object.inventory.update(inventory_slot);
+							this.player_object.equipment.update(equipment_slot);
+							this.com.inventory.update();
+							this.com.equipment.update();
 							return true;
 						}
 					}else if(first_item.blueprint.action_index==item.action.equipable){//Swap
@@ -308,6 +337,9 @@ lostking.equipment = function(player_object){
 						inventory_slot.item_list = equipment_slot.item_list;
 						equipment_slot.item_list = tmp_list;
 						this.player_object.inventory.update(inventory_slot);
+						this.player_object.equipment.update(equipment_slot);
+						this.com.inventory.update();
+						this.com.equipment.update();
 						return true;
 					}
 			}
@@ -338,7 +370,7 @@ lostking.equipment = function(player_object){
 								return true;
 							}else{//Try to add object to inventory
 								var result = this.player_object.inventory.add(equipment_slot.item_list[0]);
-									if(result){
+									if(result!=null){
 										equipment_slot.item_list = [inventory_slot.item_list[0]];
 										inventory_slot.item_list.splice(0, 1);
 										this.player_object.inventory.update(inventory_slot);

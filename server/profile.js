@@ -13,9 +13,10 @@ new hnet.profile(14, new Array(h_byte, h_string, h_byte16));
 //Inventory communication
 new hnet.profile(30, new Array(h_byte, h_byte));//C>S Drag item from origin inventory slot to dest inventory slot [index, index]
 new hnet.profile(31, new Array(h_byte, h_byte));//C>S Drag single item from origin inventory slot to dest inventory slot [index, index]
-new hnet.profile(32, new Array(h_byte, h_byte));//C>S Drag item from inventory to equipment [index, index]
-new hnet.profile(33, new Array(h_byte, h_byte));//C>S Drag item from equipment to inventory [index, index]
-//34 is reserved
+new hnet.profile(32, new Array(h_byte, h_byte));//C>S Drag item from inventory to equipment [equipment_slot_index, inventory_slot_index]
+new hnet.profile(33, new Array(h_byte, h_byte));//C>S Drag item from equipment to inventory [equipment_slot_index, inventory_slot_index]
+new hnet.profile(34, new Array(h_byte, h_byte));//C>S Drag item from origin equipment slot to dest equipment slot [index, index]
+
 new hnet.profile(35, [h_byte]);//S>C Drag response [0 = Denied | 1 = Succesfull]
 new hnet.profile(36, [h_byte]);//C>S Use inventory item [index]
 new hnet.profile(37, [h_byte]);//C>S Dequip equipment [index]
