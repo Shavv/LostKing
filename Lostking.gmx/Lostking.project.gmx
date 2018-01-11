@@ -63,6 +63,7 @@
       <sprite>sprites\sprite39</sprite>
       <sprite>sprites\sprite41</sprite>
       <sprite>sprites\human_concept</sprite>
+      <sprite>sprites\sprite42</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
