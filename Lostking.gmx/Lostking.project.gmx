@@ -34,6 +34,11 @@
       <sprite>sprites\item_mastersword</sprite>
       <sprite>sprites\item_wildcard</sprite>
       <sprite>sprites\spr_inventory_slot</sprite>
+      <sprites name="Item Icon">
+        <sprite>sprites\item_watering_can</sprite>
+        <sprite>sprites\item_root_crop</sprite>
+        <sprite>sprites\item_root_seed</sprite>
+      </sprites>
     </sprites>
     <sprites name="concept">
       <sprite>sprites\sprite33</sprite>
@@ -151,6 +156,7 @@
         <object>objects\item_3_mastersword</object>
         <object>objects\item_4</object>
         <object>objects\item_5_wildcard</object>
+        <object>objects\item_10_root_seed</object>
       </objects>
       <object>objects\obj_item_controller</object>
     </objects>
@@ -160,19 +166,22 @@
       <object>objects\obj_equipment_controller</object>
       <object>objects\obj_equipment_slot</object>
       <object>objects\obj_interface_controller</object>
+      <object>objects\obj_farming_grid_controller</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\display_set</room>
     <room>rooms\test_room</room>
   </rooms>
-  <constants number="31">
+  <constants number="33">
     <constant name="t_default">0</constant>
     <constant name="t_equipable">1</constant>
     <constant name="t_consumable">2</constant>
     <constant name="t_relic">3</constant>
     <constant name="t_lynx">4</constant>
     <constant name="t_tradepack">5</constant>
+    <constant name="t_plantable">6</constant>
+    <constant name="t_consumable_plantable">7</constant>
     <constant name="q_helmet">0</constant>
     <constant name="q_chest">1</constant>
     <constant name="q_shoulders">2</constant>

@@ -33,6 +33,9 @@ lostking.player = function(socket, name){
 	this.inventory.add(new lostking.item_equipable(item.blueprint.list[3]));
 	this.inventory.add(new lostking.item_equipable(item.blueprint.list[5]));
 	this.inventory.add(new lostking.item_equipable(item.blueprint.list[5]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[10]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[10]));
+	this.inventory.add(new lostking.item_equipable(item.blueprint.list[10]));
 	lostking.player_list.push(this);
 }
 eval(fs.readFileSync('player_com.js')+'');
@@ -417,7 +420,7 @@ lostking.item_equipable = function(blueprint){
 }
 
 eval(fs.readFileSync('item_data.js')+'');
-
+eval(fs.readFileSync('world.js')+'');
 /*henk = new lostking.player(-1, "Henk");
 henk.inventory.add(new lostking.item_default(item.blueprint.empty));
 henk.inventory.add(new lostking.item_default(item.blueprint.test));

@@ -113,6 +113,8 @@ ip.action.list = new Array;
 ip.action.list.push({name:"t_default", callback:ip.communicate.default});
 ip.action.list.push({name:"t_equipable", callback:ip.communicate.equipment});
 ip.action.list.push({name:"t_consumable", callback:ip.communicate.consumable});
+
+ip.action.list.push({name:"t_plantable", callback:ip.communicate.default});
 ip.action.find_callback = function(name){
 	var i;
 		for(i=0; i<ip.action.list.length; i++){

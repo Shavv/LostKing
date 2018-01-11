@@ -3,12 +3,12 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>10</depth>
+  <depth>900000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="3" enumb="0">
+    <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,37 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_exists(obj_inventory_controller) &amp;&amp; instance_exists(obj_equipment_controller)){
-    if((obj_inventory_controller.resize_hold_w &amp;&amp; obj_inventory_controller.resize_hold_h) || (obj_inventory_controller.resize_interface_w &amp;&amp; obj_inventory_controller.resize_interface_h)){
-        window_set_cursor(cr_size_nwse);
-    }else if(obj_inventory_controller.resize_hold_w || obj_inventory_controller.resize_interface_w){
-        window_set_cursor(cr_size_we);
-    }else if(obj_inventory_controller.resize_hold_h || obj_inventory_controller.resize_interface_h){
-        window_set_cursor(cr_size_ns);
-        
-    }else if((obj_equipment_controller.resize_hold_w &amp;&amp; obj_equipment_controller.resize_hold_h) || (obj_equipment_controller.resize_interface_w &amp;&amp; obj_equipment_controller.resize_interface_h)){
-        window_set_cursor(cr_size_nwse);
-    }else if(obj_equipment_controller.resize_hold_w || obj_equipment_controller.resize_interface_w){
-        window_set_cursor(cr_size_we);
-    }else if(obj_equipment_controller.resize_hold_h || obj_equipment_controller.resize_interface_h){
-        window_set_cursor(cr_size_ns); 
-    }else{
-        window_set_cursor(cr_default);
-    }
-    /*if(obj_inventory_controller.resize_interface_w){
-        window_set_cursor(cr_size_we);
-    }else if(obj_inventory_controller.resize_interface_h){
-        window_set_cursor(cr_size_ns);
-    }else if(obj_inventory_controller.resize_interface_w &amp;&amp; obj_interface_controller.resize_interface_h){
-        window_set_cursor(cr_size_nwse);
-    }else if(obj_equipment_controller.resize_interface_w){
-        window_set_cursor(cr_size_we);
-    }else if(obj_equipment_controller.resize_interface_h){
-        window_set_cursor(cr_size_ns);
-    }else if(obj_equipment_controller.resize_interface_w &amp;&amp; obj_equipment_controller.resize_interface_h){
-        window_set_cursor(cr_size_nwse);
-    }*/
-}
+            <string>global.foliage_field_size = 16;
 </string>
           </argument>
         </arguments>
@@ -78,7 +48,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>var v_room_w = room_width;
+var v_room_grid_w = ceil(v_room_w/global.foliage_field_size);
+
+var v_room_h = room_height;
+var v_room_grid_h = ceil(v_room_h/global.foliage_field_size);
+
+var v_player_x = obj_player.x;
+var v_player_grid_x = floor(v_player_x/global.foliage_field_size);
+
+var v_player_y = obj_player.y;
+var v_player_grid_y = floor(v_player_y/global.foliage_field_size);
+
+if(obj_inventory_controller.drag_item_index!=-1){
+    if(obj_inventory_controller.slot_list[obj_inventory_controller.drag_item_index].item_object.action_index==t_plantable){
+        var i, j;
+            for(i=max(0, v_player_grid_x-3); i&lt;=v_player_grid_x+3; i++){
+                for(j=max(0, v_player_grid_y-3); j&lt;=v_player_grid_y+2; j++){
+                    var field_x = i*global.foliage_field_size;
+                    var field_y = j*global.foliage_field_size;
+                    
+                    draw_rectangle(i*global.foliage_field_size, j*global.foliage_field_size, (i+1)*global.foliage_field_size, (j+1)*global.foliage_field_size, true);
+                        
+                        if(mouse_x&gt;field_x and mouse_x&lt;field_x+global.foliage_field_size and mouse_y&gt;field_y and mouse_y&lt;field_y+global.foliage_field_size){
+                            draw_text(field_x, field_y, "+");
+                        }
+                }
+            }
+    }
+}
+</string>
           </argument>
         </arguments>
       </action>
