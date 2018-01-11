@@ -5,6 +5,7 @@ item.action.equipable = 1;
 item.action.consumable = 2;
 
 item.blueprint = new Object;
+item.blueprint.list = new Array;
 item.blueprint.empty = new lostking.item_default_blueprint(0, "Empty", 1, 0);
 item.blueprint.test = new lostking.item_default_blueprint(1, "Test", 2, 0);
 item.blueprint.sword = new lostking.item_equipable_blueprint(2, "Sword", 1, 0, equipment.item.mainhand, 100);

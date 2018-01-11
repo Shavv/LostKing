@@ -218,7 +218,7 @@ if state=0
  //mouse click 
  if global.mouse_ui=0
  {
-  if mouse_check_button(mb_right) and alarm[11]=-1
+  if world_mouse_check_right() and alarm[11]=-1
   {
    if point_distance(x,y,mouse_x,mouse_y)&gt;5
    {

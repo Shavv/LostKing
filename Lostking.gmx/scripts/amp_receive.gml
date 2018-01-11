@@ -44,4 +44,16 @@ switch(receive_package_id){
                 }
             }
     break;
+    case 40://Update inventory slot
+        var inventory_index = amp_read();
+        var item_index = amp_read();
+        var slot_amount = amp_read();
+        update_inventory_slot_regular(inventory_index, item_index, slot_amount);
+    break;
+    case 45://Update equipment slot
+        var inventory_index = amp_read();
+        var item_index = amp_read();
+        var slot_amount = amp_read();
+        update_equipment_slot_regular(inventory_index, item_index, slot_amount);
+    break;
 }

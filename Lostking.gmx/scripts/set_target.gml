@@ -1,5 +1,5 @@
 ///set_target()
-if mouse_check_button_pressed(mb_right)
+if world_mouse_check_right()
 {
  obj_player.alarm[11]=10
  obj_player.target=id

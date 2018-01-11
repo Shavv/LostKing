@@ -4,6 +4,7 @@ var net = require('net');
 eval(fs.readFileSync('sources/network.js')+'');
 console.log("Load: network.js");
 
+eval(fs.readFileSync('blade_server.js')+'');
 eval(fs.readFileSync('profile.js')+'');
 eval(fs.readFileSync('player.js')+'');
 
@@ -82,7 +83,54 @@ loginserver_socket_object = function(){
 				message.write_byte16(player.hp);
 				
 				message.send_other(object);
+			break;
+			case 30://Drag item inventory
+				var player = object.player_object;
+				var origin_index = buffer.read();
+				var destination_index = buffer.read();
 				
+				player.com.inventory.drag(origin_index, destination_index);
+			break;
+			case 31://Drag single item inventory
+				var player = object.player_object;
+				var origin_index = buffer.read();
+				var destination_index = buffer.read();
+				
+				player.com.inventory.drag_single(origin_index, destination_index);
+			break;
+			case 32://Drag item from inventory to equipment
+				var player = object.player_object;
+				var equipment_slot_index = buffer.read();
+				var inventory_slot_index = buffer.read();
+				console.log("Drag from:"+equipment_slot_index+" "+inventory_slot_index);
+				player.com.equipment.drag_from_inventory(equipment_slot_index, inventory_slot_index);
+			break;
+			case 33://Drag item from equipment to inventory
+				var player = object.player_object;
+				var equipment_slot_index = buffer.read();
+				var inventory_slot_index = buffer.read();
+				
+				player.com.equipment.drag_to_inventory(equipment_slot_index, inventory_slot_index);
+			break;
+			case 34://Drag item equipment
+				var player = object.player_object;
+				var origin_index = buffer.read();
+				var destination_index = buffer.read();
+				
+				player.com.equipment.drag(origin_index, destination_index);
+			break;
+			case 36://Use item
+				var player = object.player_object;
+				var slot_index = buffer.read();
+
+				player.com.inventory.use(slot_index);
+			break;
+			case 37://Dequip item
+				var player = object.player_object;
+				var slot_index = buffer.read();
+				console.log("Dequip: "+slot_index);
+				
+				player.com.equipment.dequip(slot_index);
 			break;
 		}
 	}

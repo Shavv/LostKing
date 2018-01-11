@@ -31,6 +31,9 @@
       <sprite>sprites\spr_equipment</sprite>
       <sprite>sprites\item_lumber</sprite>
       <sprite>sprites\item_testsword</sprite>
+      <sprite>sprites\item_mastersword</sprite>
+      <sprite>sprites\item_wildcard</sprite>
+      <sprite>sprites\spr_inventory_slot</sprite>
     </sprites>
     <sprites name="concept">
       <sprite>sprites\sprite33</sprite>
@@ -94,11 +97,29 @@
     <scripts name="LostKing Multiplayer">
       <script>scripts\amp_receive.gml</script>
       <script>scripts\amp_read.gml</script>
+      <script>scripts\amp_inventory_use.gml</script>
+      <script>scripts\amp_inventory_drag.gml</script>
+      <script>scripts\amp_inventory_drag_single.gml</script>
+      <script>scripts\amp_equipment_drag.gml</script>
+      <script>scripts\amp_equipment_dequip.gml</script>
+      <script>scripts\amp_equipment_drag_from_inventory.gml</script>
+      <script>scripts\amp_equipment_drag_to_inventory.gml</script>
     </scripts>
     <scripts name="Item">
       <script>scripts\get_index_from_item_name.gml</script>
       <script>scripts\create_item_list.gml</script>
       <script>scripts\find_item_object.gml</script>
+    </scripts>
+    <scripts name="Inventory">
+      <script>scripts\find_inventory_slot.gml</script>
+      <script>scripts\update_inventory_slot_regular.gml</script>
+      <script>scripts\find_equipment_slot.gml</script>
+      <script>scripts\update_equipment_slot_regular.gml</script>
+    </scripts>
+    <scripts name="Mouse">
+      <script>scripts\world_mouse_check_left.gml</script>
+      <script>scripts\world_mouse_check_right.gml</script>
+      <script>scripts\world_mouse_interface.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -128,9 +149,18 @@
         <object>objects\item_0_empty</object>
         <object>objects\item_1_lumber</object>
         <object>objects\item_2_testsword</object>
+        <object>objects\item_3_mastersword</object>
         <object>objects\item_4</object>
+        <object>objects\item_5_wildcard</object>
       </objects>
       <object>objects\obj_item_controller</object>
+    </objects>
+    <objects name="inventory">
+      <object>objects\obj_inventory_controller</object>
+      <object>objects\obj_inventory_slot</object>
+      <object>objects\obj_equipment_controller</object>
+      <object>objects\obj_equipment_slot</object>
+      <object>objects\obj_interface_controller</object>
     </objects>
   </objects>
   <rooms name="rooms">
